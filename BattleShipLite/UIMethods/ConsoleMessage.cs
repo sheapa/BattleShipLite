@@ -8,16 +8,46 @@ namespace BattleShipLite
 {
     public class ConsoleMessage
     {
-        public static string MessageAndResponseString(string message)
+        public static string MessageAndResponseName(string message)
         {
-            string output = null;
-            bool isString;
-            string isValid;
+            string output;
+            Console.Write(message);
+            output = Console.ReadLine();
+            return output;
+        }
+        public static string MessageAndResponseLetter(string message)
+        {
+            string output;
+            string isValid = null;
 
             Console.Write(message);
             output = Console.ReadLine();
 
-            return output;
+            switch (output.ToLower())
+            {
+                case "a":
+                    isValid = output;
+                    break;
+                case "b":
+                    isValid = output;
+                    break;
+                case "c":
+                    isValid = output;
+                    break;
+                case "d": 
+                    isValid = output;
+                    break;
+                case "e":
+                    isValid = output;
+                    break;
+                default:
+                    Console.WriteLine("Please enter a valid letter (A-E)");
+                    MessageAndResponseLetter(message);
+                    break;
+            }
+
+
+            return isValid;
 
         }
 
