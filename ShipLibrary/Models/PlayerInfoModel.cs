@@ -12,5 +12,15 @@ namespace ShipLibrary.Models
         public List<GridModel> ShipGrid { get; set; }
 
         public List<GridModel> ShotGrid { get; set; }
+
+        public PlayerInfoModel()
+        { 
+           PlayerName = null;
+
+           ShipGrid = new List<GridModel>();
+
+           ShotGrid = new List<GridModel>();
+        }
     }
+
 }

@@ -11,7 +11,14 @@ namespace ShipLibrary.Models
     {
         public string SpotLetter { get; set; }
         public int SpotNumber { get; set;}
-        public Enums.GridSpotStatus Status { get; set; } = Enums.GridSpotStatus.Empty;
+        public Enums.GridSpotStatus Status { get; set; }
+
+        public GridModel()
+        {
+            SpotLetter = null;
+            SpotNumber = 0;
+            Status = Enums.GridSpotStatus.Empty;
+        }
 
     }
 }
