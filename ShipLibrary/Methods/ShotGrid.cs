@@ -8,7 +8,7 @@ using ShipLibrary.Models;
 
 namespace ShipLibrary.Methods
 {
-    public class GameLogic
+    public class ShotGrid
     {
         public static void InitializeGrid(PlayerInfoModel model)
         {
@@ -51,5 +51,9 @@ namespace ShipLibrary.Methods
 
             model.ShotGrid.Add(spot);
         }
+
+       
     }
+
+    
 }

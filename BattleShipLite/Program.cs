@@ -13,6 +13,10 @@ PlayerInfoModel player2 = new PlayerInfoModel();
 
 player1 = BuildPlayer.build("player1");
 
+
+DisplayShotGrid.DisplayGrid(player1);
+
 player2 = BuildPlayer.build("player2");
+
 
 

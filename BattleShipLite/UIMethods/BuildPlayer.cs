@@ -17,7 +17,7 @@ namespace BattleShipLite.UIMethods
 
             output.PlayerName = ConsoleMessage.MessageAndResponseName($"Enter {playerNumber}'s name. ");
 
-            GameLogic.InitializeGrid(output);
+            ShotGrid.InitializeGrid(output);
 
             ShipGridBuilder.BuildGrid(output, 0);
 
