@@ -23,7 +23,7 @@ namespace ShipLibrary.Methods
                     if (ship.SpotLetter == grid.SpotLetter && ship.SpotNumber == grid.SpotNumber)
                     {
                         Console.WriteLine(
-                            $"Please enter a unique ship coordinates {ship.SpotLetter}{ship.SpotNumber} is already in use.");
+                            $"Please enter a unique coordinates {ship.SpotLetter}{ship.SpotNumber} is already in use.");
                         BuildGrid(player, i);
                     }
                 }
@@ -39,11 +39,11 @@ namespace ShipLibrary.Methods
 
             ship.SpotLetter = ConsoleMessage.MessageAndResponseLetter($"Enter letter coordinates (A-E) for ship number  {num + 1} ");
             ship.SpotNumber = ConsoleMessage.MessageAndResponseInt($"Enter number coordinates (1-5) for ship number  {num + 1} ");
+            ship.Status = Enums.GridSpotStatus.Ship;
 
             return ship;
 
         }
-
-      
+        
     }
 }

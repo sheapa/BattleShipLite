@@ -7,7 +7,7 @@ using ShipLibrary.Models;
 
 namespace BattleShipLite.UIMethods
 {
-    internal class DisplayShotGrid
+    public class DisplayShotGrid
     {
         
 
@@ -17,8 +17,21 @@ namespace BattleShipLite.UIMethods
             foreach (GridModel grid in player.ShotGrid)
             {
                 i++;
+                string coord = null;
 
-                string coord = $"{grid.SpotLetter}{grid.SpotNumber}";
+                switch (grid.Status)
+                {
+                    case Enums.GridSpotStatus.Empty:
+                        coord = $"{grid.SpotLetter}{grid.SpotNumber}";
+                        break;
+                    case Enums.GridSpotStatus.Hit:
+                        coord = $"{grid.SpotLetter}X";
+                        break;
+                    case Enums.GridSpotStatus.Miss:
+                        coord = $"{grid.SpotLetter}O";
+                        break;
+
+                }
                
                 switch (i % 5)
                 {
