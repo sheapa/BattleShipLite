@@ -12,7 +12,7 @@ namespace BattleShipLite
         {
             string output;
             Console.Write(message);
-            output = Console.ReadLine();
+            output = Console.ReadLine().ToUpper();
             return output;
         }
         public static string MessageAndResponseLetter(string message)
@@ -21,23 +21,23 @@ namespace BattleShipLite
             string isValid = null;
 
             Console.Write(message);
-            output = Console.ReadLine();
+            output = Console.ReadLine().ToUpper();
 
-            switch (output.ToLower())
+            switch (output)
             {
-                case "a":
+                case "A":
                     isValid = output;
                     break;
-                case "b":
+                case "B":
                     isValid = output;
                     break;
-                case "c":
+                case "C":
                     isValid = output;
                     break;
-                case "d": 
+                case "D": 
                     isValid = output;
                     break;
-                case "e":
+                case "E":
                     isValid = output;
                     break;
                 default:

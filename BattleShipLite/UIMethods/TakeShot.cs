@@ -20,38 +20,64 @@ namespace BattleShipLite.UIMethods
 
             foreach (GridModel coord in attacker.ShotGrid)
             {
-                if (shotLetter == coord.SpotLetter && shotNumber == coord.SpotNumber)
+                string attackLetter = coord.SpotLetter;
+                int attackNumber = coord.SpotNumber;
+                Enum attackStatus = coord.Status;
+
+                if (shotLetter == attackLetter && shotNumber == attackNumber &&
+                    attackStatus is Enums.GridSpotStatus.Hit)
                 {
-                    if (coord.Status == Enums.GridSpotStatus.Hit || coord.Status == Enums.GridSpotStatus.Miss)
-                    {
-                        Console.WriteLine("Please choose a coordinates that hasn't been played.");
-                        ShotCoordinates(turnCount, attacker, defender);
-                    }
-                    else
-                    {
-                        foreach (GridModel point in defender.ShipGrid)
-                        {
-                            if (shotLetter == point.SpotLetter && shotNumber == point.SpotNumber)
-                            {
-                                if (point.Status == Enums.GridSpotStatus.Ship)
-                                {
-                                    Console.WriteLine("Congrats! You sunk an enemy battleship!");
-                                    coord.Status = Enums.GridSpotStatus.Hit;
-                                }
-                                else
-                                {
-                                    Console.WriteLine("You missed! :\n( ");
-                                    coord.Status = Enums.GridSpotStatus.Miss;
-                                }
-                            }
-                        }
-                        
-                    }
+
+                    Console.WriteLine("Please choose a coordinates that hasn't been played.");
+                    ShotCoordinates(turnCount, attacker, defender);
+
                 }
+                else if (shotLetter == attackLetter && shotNumber == attackNumber &&
+                         attackStatus is Enums.GridSpotStatus.Miss)
+                {
+                    Console.WriteLine("Please choose a coordinates that hasn't been played.");
+                    ShotCoordinates(turnCount, attacker, defender);
+                }
+                else
+                {
+                    HitChecker(defender, shotLetter, shotNumber, attackStatus );
+                    break;
+                }
+
             }
 
+            
 
+           
         }
 
+        public static void HitChecker(PlayerInfoModel defender, string shotLetter, int shotNumber, Enum attackStatus)
+        {
+            foreach (GridModel point in defender.ShipGrid)
+            {
+                string defenseLetter = point.SpotLetter;
+                int defenseNumber = point.SpotNumber;
+                Enum defenseStatus = point.Status;
+
+
+                if (shotLetter == defenseLetter && shotNumber == defenseNumber && defenseStatus is Enums.GridSpotStatus.Ship)
+                {
+                    Console.WriteLine("Congrats! You sunk an enemy battleship!");
+                    defenseStatus = Enums.GridSpotStatus.Sunk;
+                    attackStatus = Enums.GridSpotStatus.Hit;
+                    break;
+
+                }
+                else
+                {
+                    Console.WriteLine("You missed! ");
+                    attackStatus = Enums.GridSpotStatus.Miss;
+                    break;
+
+                }
+
+
+            }
+        }
     }
 }

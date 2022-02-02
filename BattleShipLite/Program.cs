@@ -11,21 +11,40 @@ Console.WriteLine("");
 
 PlayerInfoModel player1 = new PlayerInfoModel();
 PlayerInfoModel player2 = new PlayerInfoModel();
+int turnCount = 1;
 
 player1 = BuildPlayer.build("PLAYER1");
 
+player2 = BuildPlayer.build("PLAYER2");
 
-DisplayShotGrid.DisplayGrid(player1);
-int turnCount = 1;
 do
 {
-    Console.WriteLine("Player1's turn");
-    TakeShot.ShotCoordinates(turnCount, player1, player2);
+    PlayerInfoModel attacker;
+    PlayerInfoModel defender;
+
+
+    attacker = player1;
+    defender = player2;
+    Console.WriteLine($"{attacker.PlayerName}'s turn");
+    Console.WriteLine("Attack Grid: ");
+    DisplayShotGrid.DisplayGrid(player1);
+    TakeShot.ShotCoordinates(turnCount, attacker, defender);
+    
+
+
+    attacker = player2;
+    defender = player1;
+    Console.WriteLine($"{attacker.PlayerName}'s turn");
+    Console.WriteLine("Attack Grid: ");
+    DisplayShotGrid.DisplayGrid(player1);
+    TakeShot.ShotCoordinates(turnCount, attacker, defender);
+    
+
 
     turnCount++;
 } while (true);
 
-player2 = BuildPlayer.build("PLAYER2");
+
 
 
 
