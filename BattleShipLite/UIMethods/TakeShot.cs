@@ -83,7 +83,7 @@ namespace BattleShipLite.UIMethods
                                         shotGridModel.SpotNumber == attackNumber)
                                     {
                                         shotGridModel.Status = (Enums.GridSpotStatus) shotStatus;
-                                        break;
+                                        
                                     }
                                 }
 
@@ -103,7 +103,7 @@ namespace BattleShipLite.UIMethods
                                     shotGridModel.SpotNumber == attackNumber)
                                 {
                                     shotGridModel.Status = (Enums.GridSpotStatus)shotStatus;
-                                    break;
+                                    
                                 }
                             }
 
@@ -120,7 +120,6 @@ namespace BattleShipLite.UIMethods
                                     shotGridModel.SpotNumber == attackNumber)
                                 {
                                     shotGridModel.Status = (Enums.GridSpotStatus)shotStatus;
-                                    break;
                                 }
                             }
 

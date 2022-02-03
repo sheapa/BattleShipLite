@@ -24,6 +24,8 @@ do
 {
     PlayerInfoModel attacker;
     PlayerInfoModel defender;
+    int p1score = ScoreChecker.score(player1);
+    int p2score = ScoreChecker.score(player2);
 
 
     attacker = player1;
@@ -32,9 +34,15 @@ do
     Console.WriteLine($"{attacker.PlayerName}'s Attack Grid: ");
     DisplayShotGrid.DisplayGrid(attacker);
     TakeShot.ShotCoordinates(turnCount, attacker, defender);
+
     Console.WriteLine("**************************************************");
-    
-    
+    p1score = ScoreChecker.score(player1);
+    p2score = ScoreChecker.score(player2);
+    Console.WriteLine($"Score Board: {player1.PlayerName}: {p1score} || {player2.PlayerName}: {p2score}");
+    Console.WriteLine("**************************************************");
+
+
+
 
 
     attacker = player2;
@@ -43,8 +51,12 @@ do
     Console.WriteLine($"{attacker.PlayerName}'s Attack Grid: ");
     DisplayShotGrid.DisplayGrid(attacker);
     TakeShot.ShotCoordinates(turnCount, attacker, defender);
-    Console.WriteLine("**************************************************");
 
+    Console.WriteLine("**************************************************");
+    p1score = ScoreChecker.score(player1);
+    p2score = ScoreChecker.score(player2);
+    Console.WriteLine($"Score Board: {player1.PlayerName}: {p1score} || {player2.PlayerName}: {p2score}");
+    Console.WriteLine("**************************************************");
 
 
     turnCount++;
