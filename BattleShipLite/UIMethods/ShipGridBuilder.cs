@@ -29,8 +29,9 @@ namespace ShipLibrary.Methods
                 }
                 player.ShipGrid.Add(ship);
 
-                Console.Clear();
             }
+
+            Console.Clear();
         }
 
         public static GridModel CreateShip(int num)

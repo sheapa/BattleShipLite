@@ -18,6 +18,7 @@ namespace BattleShipLite.UIMethods
             var shotLetter = ConsoleMessage.MessageAndResponseLetter($"Enter letter coordinates (A-E) for shot number  {turnCount} ");
             var shotNumber = ConsoleMessage.MessageAndResponseInt($"Enter number coordinates (1-5) for shot number  {turnCount} ");
 
+
             foreach (GridModel coord in attacker.ShotGrid)
             {
                 string attackLetter = coord.SpotLetter;
@@ -27,57 +28,113 @@ namespace BattleShipLite.UIMethods
                 if (shotLetter == attackLetter && shotNumber == attackNumber &&
                     attackStatus is Enums.GridSpotStatus.Hit)
                 {
+                    foreach (var gridModel in attacker.ShotGrid)
+                    {
+                        if (shotLetter == attackLetter && shotNumber == attackNumber &&
+                            attackStatus is Enums.GridSpotStatus.Hit)
+                        {
+                            Console.WriteLine("Please choose a coordinates that hasn't been played.");
+                            ShotCoordinates(turnCount, attacker, defender);
 
-                    Console.WriteLine("Please choose a coordinates that hasn't been played.");
-                    ShotCoordinates(turnCount, attacker, defender);
+                        }
+                    }
+
+                    break;
+
 
                 }
                 else if (shotLetter == attackLetter && shotNumber == attackNumber &&
                          attackStatus is Enums.GridSpotStatus.Miss)
                 {
-                    Console.WriteLine("Please choose a coordinates that hasn't been played.");
-                    ShotCoordinates(turnCount, attacker, defender);
-                }
-                else
-                {
-                    HitChecker(defender, shotLetter, shotNumber, attackStatus );
-                    break;
-                }
+                    foreach (var gridModel in attacker.ShotGrid)
+                    {
+                        if (shotLetter == attackLetter && shotNumber == attackNumber &&
+                            attackStatus is Enums.GridSpotStatus.Miss)
+                        {
+                            Console.WriteLine("Please choose a coordinates that hasn't been played.");
+                            ShotCoordinates(turnCount, attacker, defender);
 
+                        }
+                    }
+
+                    break;
+
+                }
+                else if (shotLetter == attackLetter && shotNumber == attackNumber)
+                {
+                    foreach (GridModel point in defender.ShipGrid)
+                    {
+                        string defenseLetter = point.SpotLetter;
+                        int defenseNumber = point.SpotNumber;
+                        Enum defenseStatus = point.Status;
+                        Enum shotStatus;
+
+
+                        if (shotLetter == defenseLetter && shotNumber == defenseNumber)
+                        {
+                            if (defenseStatus is Enums.GridSpotStatus.Ship)
+                            {
+                                Console.WriteLine("Congrats! You sunk an enemy battleship!");
+                                shotStatus = Enums.GridSpotStatus.Hit;
+
+                                foreach (var shotGridModel in attacker.ShotGrid)
+                                {
+                                    if (shotGridModel.SpotLetter == attackLetter &&
+                                        shotGridModel.SpotNumber == attackNumber)
+                                    {
+                                        shotGridModel.Status = (Enums.GridSpotStatus) shotStatus;
+                                        break;
+                                    }
+                                }
+
+
+                            }
+
+                            break;
+                        }
+                        else if (shotLetter != defenseLetter && shotNumber != defenseNumber)
+                        {
+                            Console.WriteLine("You Missed :(");
+                            shotStatus = Enums.GridSpotStatus.Miss;
+
+                            foreach (var shotGridModel in attacker.ShotGrid)
+                            {
+                                if (shotGridModel.SpotLetter == attackLetter &&
+                                    shotGridModel.SpotNumber == attackNumber)
+                                {
+                                    shotGridModel.Status = (Enums.GridSpotStatus)shotStatus;
+                                    break;
+                                }
+                            }
+
+                            break;
+                        }
+                        else if (shotLetter == defenseLetter && shotNumber != defenseNumber)
+                        {
+                            Console.WriteLine("You Missed :(");
+                            shotStatus = Enums.GridSpotStatus.Miss;
+
+                            foreach (var shotGridModel in attacker.ShotGrid)
+                            {
+                                if (shotGridModel.SpotLetter == attackLetter &&
+                                    shotGridModel.SpotNumber == attackNumber)
+                                {
+                                    shotGridModel.Status = (Enums.GridSpotStatus)shotStatus;
+                                    break;
+                                }
+                            }
+
+                            break;
+                        }
+
+                    }
+                }
             }
 
-            
 
-           
+
         }
 
-        public static void HitChecker(PlayerInfoModel defender, string shotLetter, int shotNumber, Enum attackStatus)
-        {
-            foreach (GridModel point in defender.ShipGrid)
-            {
-                string defenseLetter = point.SpotLetter;
-                int defenseNumber = point.SpotNumber;
-                Enum defenseStatus = point.Status;
-
-
-                if (shotLetter == defenseLetter && shotNumber == defenseNumber && defenseStatus is Enums.GridSpotStatus.Ship)
-                {
-                    Console.WriteLine("Congrats! You sunk an enemy battleship!");
-                    defenseStatus = Enums.GridSpotStatus.Sunk;
-                    attackStatus = Enums.GridSpotStatus.Hit;
-                    break;
-
-                }
-                else
-                {
-                    Console.WriteLine("You missed! ");
-                    attackStatus = Enums.GridSpotStatus.Miss;
-                    break;
-
-                }
-
-
-            }
-        }
+        
     }
 }
