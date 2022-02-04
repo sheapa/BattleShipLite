@@ -24,8 +24,8 @@ do
 {
     PlayerInfoModel attacker;
     PlayerInfoModel defender;
-    int p1score = ScoreChecker.score(player1);
-    int p2score = ScoreChecker.score(player2);
+    int p1Score = ScoreChecker.score(player1);
+    int p2Score = ScoreChecker.score(player2);
 
 
     attacker = player1;
@@ -34,15 +34,22 @@ do
     Console.WriteLine($"{attacker.PlayerName}'s Attack Grid: ");
     DisplayShotGrid.DisplayGrid(attacker);
     TakeShot.ShotCoordinates(turnCount, attacker, defender);
-
     Console.WriteLine("**************************************************");
-    p1score = ScoreChecker.score(player1);
-    p2score = ScoreChecker.score(player2);
-    Console.WriteLine($"Score Board: {player1.PlayerName}: {p1score} || {player2.PlayerName}: {p2score}");
+    p1Score = ScoreChecker.score(player1);
+    p2Score = ScoreChecker.score(player2);
+    if (p1Score == 5)
+    {
+        Console.WriteLine($"Game Over. {player1.PlayerName} wins!");
+    }
+    else if (p2Score == 5)
+    {
+        Console.WriteLine($"Game Over. {player2.PlayerName} wins!");
+    }
+    else
+    {
+        Console.WriteLine($"Score Board: {player1.PlayerName}: {p1Score} || {player2.PlayerName}: {p2Score}");
+    }
     Console.WriteLine("**************************************************");
-
-
-
 
 
     attacker = player2;
@@ -53,9 +60,20 @@ do
     TakeShot.ShotCoordinates(turnCount, attacker, defender);
 
     Console.WriteLine("**************************************************");
-    p1score = ScoreChecker.score(player1);
-    p2score = ScoreChecker.score(player2);
-    Console.WriteLine($"Score Board: {player1.PlayerName}: {p1score} || {player2.PlayerName}: {p2score}");
+    p1Score = ScoreChecker.score(player1);
+    p2Score = ScoreChecker.score(player2);
+    if (p1Score == 5)
+    {
+        Console.WriteLine($"Game Over. {player1.PlayerName} wins!");
+    }
+    else if (p2Score == 5)
+    {
+        Console.WriteLine($"Game Over. {player2.PlayerName} wins!");
+    }
+    else
+    {
+        Console.WriteLine($"Score Board: {player1.PlayerName}: {p1Score} || {player2.PlayerName}: {p2Score}");
+    }
     Console.WriteLine("**************************************************");
 
 

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using ShipLibrary.Models;
@@ -24,9 +25,9 @@ namespace ShipLibrary.Methods
             return score;
         }
 
-        public static void ScoreTally(PlayerInfoModel player1, PlayerInfoModel player2)
+        public static void WinCondition(int p1Score, int p2Score )
         {
-
+            
         }
     }
 }
