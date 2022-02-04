@@ -65,10 +65,12 @@ do
     if (p1Score == 5)
     {
         Console.WriteLine($"Game Over. {player1.PlayerName} wins!");
+        break;
     }
     else if (p2Score == 5)
     {
         Console.WriteLine($"Game Over. {player2.PlayerName} wins!");
+        break;
     }
     else
     {

@@ -89,10 +89,24 @@ namespace BattleShipLite.UIMethods
 
 
                             }
+                            else 
+                            {
+                                Console.WriteLine("You Missed :(");
+                                shotStatus = Enums.GridSpotStatus.Miss;
+
+                                foreach (var shotGridModel in attacker.ShotGrid)
+                                {
+                                    if (shotGridModel.SpotLetter == attackLetter &&
+                                        shotGridModel.SpotNumber == attackNumber)
+                                    {
+                                        shotGridModel.Status = (Enums.GridSpotStatus)shotStatus;
+                                    }
+                                }
+                            }
 
                             break;
                         }
-                        else if (shotLetter != defenseLetter && shotNumber != defenseNumber)
+                        else if (shotLetter != defenseLetter )
                         {
                             Console.WriteLine("You Missed :(");
                             shotStatus = Enums.GridSpotStatus.Miss;
@@ -103,30 +117,14 @@ namespace BattleShipLite.UIMethods
                                     shotGridModel.SpotNumber == attackNumber)
                                 {
                                     shotGridModel.Status = (Enums.GridSpotStatus)shotStatus;
-                                    
+
                                 }
                             }
 
                             break;
-                        }
-                        else if (shotLetter == defenseLetter && shotNumber != defenseNumber)
-                        {
-                            Console.WriteLine("You Missed :(");
-                            shotStatus = Enums.GridSpotStatus.Miss;
+                        
 
-                            foreach (var shotGridModel in attacker.ShotGrid)
-                            {
-                                if (shotGridModel.SpotLetter == attackLetter &&
-                                    shotGridModel.SpotNumber == attackNumber)
-                                {
-                                    shotGridModel.Status = (Enums.GridSpotStatus)shotStatus;
-                                }
-                            }
-
-                            break;
-                        }
-
-                    }
+                     }   }
                 }
             }
 
